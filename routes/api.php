@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Bookable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('bookables', 'Api\BookableController');
+Route::get('bookables/{id}/availability', 'Api\BookableAvailabilityController')
+    ->name('bookable.availability.show');
+
+// for knowledge //
+//Route::get('bookables/{id}/{optional?}', function ($id, $optional = "tester"){
+//    return $id . '-' . $optional;
+//});
