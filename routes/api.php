@@ -20,8 +20,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('bookables', 'Api\BookableController');
-Route::get('bookables/{id}/availability', 'Api\BookableAvailabilityController')
+Route::apiResource('reviews', 'Api\ReviewController')->only(['show','store']);
+
+Route::get('bookables/{bookable}/availability', 'Api\BookableAvailabilityController')
     ->name('bookable.availability.show');
+Route::get('bookables/{bookable}/reviews', 'Api\BookableReviewController')
+    ->name('bookable.reviews.index');
+Route::get('booking-by-review/{reviewKey}', 'Api\BookingByReviewController')
+    ->name('booking.by-review.show');
 
 // for knowledge //
 //Route::get('bookables/{id}/{optional?}', function ($id, $optional = "tester"){
