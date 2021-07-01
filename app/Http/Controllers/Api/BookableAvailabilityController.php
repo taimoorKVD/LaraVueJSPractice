@@ -9,9 +9,8 @@ use Illuminate\Http\Request;
 
 class BookableAvailabilityController extends Controller
 {
-    public function __invoke(CheckBookableAvailabilityRequest $cbar, $id)
+    public function __invoke(CheckBookableAvailabilityRequest $cbar, Bookable $bookable)
     {
-        $bookable = Bookable::findOrFail($id);
         return $bookable->availableFor(request()->from, request()->to)
             ? response()->json([])
             : response()->json([], 404);
