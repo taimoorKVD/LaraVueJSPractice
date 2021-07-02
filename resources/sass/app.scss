@@ -13,3 +13,10 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.v-enter-active, .v-leave-active {
+    transition: opacity .7s;
+}
+.v-enter, .v-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+}
